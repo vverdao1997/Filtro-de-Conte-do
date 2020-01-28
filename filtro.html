@@ -12,7 +12,7 @@
 <div class="five wide column">
     <div id="field-documento" class="ui segments h250 bg cinza">
         <div class="ui segment">
-            <a id="toggle-documento" class="ui ribbon label cor_padrao cor_border1" title="Inverte seleção dos Documentos">
+            <a id="toggle-documento" onclick="checkInput('documento')" class="ui ribbon label cor_padrao cor_border1" title="Inverte seleção dos Documentos">
                 <i class="icon checkmark box"></i> Documentos
             </a>
         </div>
@@ -47,7 +47,7 @@
 	            }else{
 
 	            	$(this).show(); 
-	            	//senão os exibo novamente
+	            	//senão as exibo 
 
 	            }
 
@@ -55,14 +55,32 @@
 
 	    });
 
-
-		$(`#filter-${div}`).blur(function(){ //toda vez que meu input "filter-documento" perder o foco
-
-			$(this).val(""); //faço a limpeza do campo
-
-		}); 
-
 	}
+
+
+	function checkInput(div){
+
+		$(`#list-${div}`).find("li").each(function() {
+
+			if($(this).find("input").is(":visible")){ 
+
+				if($(this).find('input').is(':checked')){
+
+					$(this).find('input').removeAttr("checked");
+
+				}else{
+				
+					$(this).find('input').prop('checked', true);
+
+				}
+			}
+
+		});
+		
+	}
+
+
+
 
 
 
